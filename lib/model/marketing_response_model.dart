@@ -34,6 +34,7 @@ class MarketplaceRequest {
   final bool anyLanguage;
   final bool isDealClosed;
   final String slug;
+  final RequestDetails? requestDetails;
 
   MarketplaceRequest({
     required this.idHash,
@@ -49,6 +50,7 @@ class MarketplaceRequest {
     required this.anyLanguage,
     required this.isDealClosed,
     required this.slug,
+    this.requestDetails,
   });
 
   factory MarketplaceRequest.fromJson(Map<String, dynamic> json) {
@@ -66,6 +68,9 @@ class MarketplaceRequest {
       anyLanguage: json['any_language'],
       isDealClosed: json['is_deal_closed'],
       slug: json['slug'],
+      requestDetails: json['request_details'] != null
+          ? RequestDetails.fromJson(json['request_details'])
+          : null,
     );
   }
 }
@@ -90,6 +95,70 @@ class UserDetails {
       company: json['company'],
       designation: json['designation'],
     );
+  }
+}
+
+class RequestDetails {
+  final List<String> cities;
+  final FollowersRange? followersRange;
+  final List<String> categories;
+  final List<String> languages;
+  final List<String> platform;
+
+  RequestDetails({
+    required this.cities,
+    required this.followersRange,
+    required this.categories,
+    required this.languages,
+    required this.platform,
+  });
+
+  // Factory method to create an instance from JSON
+  factory RequestDetails.fromJson(Map<String, dynamic> json) {
+    return RequestDetails(
+      cities: List<String>.from(json['cities'] ?? []),
+      followersRange: json['followers_range'] != null
+          ? FollowersRange.fromJson(json['followers_range'])
+          : null,
+      categories: List<String>.from(json['categories'] ?? []),
+      languages: List<String>.from(json['languages'] ?? []),
+      platform: List<String>.from(json['platform'] ?? []),
+    );
+  }
+
+  // Method to convert an instance to JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'cities': cities,
+      'followers_range': followersRange?.toJson(),
+      'categories': categories,
+      'languages': languages,
+      'platform': platform,
+    };
+  }
+}
+
+class FollowersRange {
+  final String igFollowersMin;
+  final String igFollowersMax;
+
+  FollowersRange({
+    required this.igFollowersMin,
+    required this.igFollowersMax,
+  });
+
+  factory FollowersRange.fromJson(Map<String, dynamic> json) {
+    return FollowersRange(
+      igFollowersMin: json['ig_followers_min'] ?? '',
+      igFollowersMax: json['ig_followers_max'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'ig_followers_min': igFollowersMin,
+      'ig_followers_max': igFollowersMax,
+    };
   }
 }
 

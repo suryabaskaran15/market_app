@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ColorConstants {
   static Color shadowColor = hexToColor('#505588');
   static Color dividerGray = hexToColor('#20222C');
+  static Color bgColor = hexToColor('#0BDC4E1F');
 
   // Additional colors from SplashScreen
   static Color appLinearStart = hexToColor('#55185D');
