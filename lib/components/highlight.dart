@@ -5,7 +5,8 @@ import 'package:marketing_app/model/marketing_response_model.dart';
 class RequestDetailsWidget extends StatelessWidget {
   final RequestDetails details;
 
-  const RequestDetailsWidget({Key? key, required this.details}) : super(key: key);
+  const RequestDetailsWidget({Key? key, required this.details})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +86,8 @@ class RequestDetailsWidget extends StatelessWidget {
 
   Widget _buildFollowerRequirement() {
     if (details.followersRange == null) return const SizedBox.shrink();
-    String followers = "${details.followersRange!.igFollowersMin} - ${details.followersRange!.igFollowersMax}+";
+    String followers =
+        "${details.followersRange!.igFollowersMin} - ${details.followersRange!.igFollowersMax}+";
 
     return Padding(
       padding: const EdgeInsets.only(top: 12),
@@ -96,13 +98,11 @@ class RequestDetailsWidget extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
           ),
           const SizedBox(width: 4),
-          const FaIcon(FontAwesomeIcons.instagram, size: 16, color: Colors.black54),
+          const FaIcon(FontAwesomeIcons.instagram,
+              size: 16, color: Colors.black54),
           const SizedBox(width: 4),
-          Text(followers, style: const TextStyle(fontSize: 14, color: Colors.black54)),
-          const SizedBox(width: 12),
-          const FaIcon(FontAwesomeIcons.youtube, size: 16, color: Colors.black54),
-          const SizedBox(width: 4),
-          Text(followers, style: const TextStyle(fontSize: 14, color: Colors.black54)),
+          Text(followers,
+              style: const TextStyle(fontSize: 14, color: Colors.black54)),
         ],
       ),
     );
